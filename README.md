@@ -1,19 +1,29 @@
-# Development-Template-2020-2021
-Template for developing and testing C++ programs 
+# Roman Numerals
+A small program that contains roman and arabic numerals structs
 
-* Build system: cmake
-* Tests: gtest
-* Code style check: cpplint
+## Functions
+Contains:
+* struct arabic
+* struct roman
+* class converter
 
-## Merging an upstream repository into your fork (master branch)
+Create numbers like structs with one field:
 ```
- git checkout master
- git pull https://github.com/UsovaMA/Development-Template.git master
+roman mynum{ "III" };
 ```
-## Update working branch
+
+Converter methods:
+* arabic toArabic(roman num)
+* roman toRoman(arabic num)
+
+These methods can convert one type of number to another:
 ```
- git checkout <your branch>
- git rebase master
-```
-## Build project with cmake
-cmake -G "Visual Studio 15 2017" <path to sourse files>
+converter conv;
+
+roman num1{ "CDXX" };
+conv.toArabic(num1);
+// = 420
+
+arabic num2{ 123 };
+conv.toRoman(num2);
+// = "CXXIII"
