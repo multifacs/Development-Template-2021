@@ -1,9 +1,7 @@
-#include <stdio.h>
-#include "add.h"
+#include <iostream>
+#include "list.h"
 
 int main() {
-  printf("hello!\n");
-  printf("%d\n", add(1, 2));
 
   return 0;
 }
