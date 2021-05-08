@@ -1,4 +1,4 @@
-#include "add.h"
+#include "polynomial.hpp"
 
 #include <gtest.h>
 
