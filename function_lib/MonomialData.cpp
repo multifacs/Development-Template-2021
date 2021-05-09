@@ -1,4 +1,4 @@
-#include "Monomial.hpp"
+#include "MonomialData.h"
 
 MonomialData::MonomialData(int t)
 {
@@ -89,39 +89,49 @@ bool MonomialData::operator==(const MonomialData& other)
 
 bool MonomialData::operator>(const MonomialData& other)
 {
-	if (dim != other.dim)
-		throw - 1;
+	//if (dim != other.dim)
+	//	throw - 1;
 
-	for (int i = 0; i < dim; i++)
-	{
-		if (data[i] > other.data[i])
+	if (this->dim > other.dim)
+		return true;
+	else if (this->dim < other.dim)
+		return false;
+	else
+		for (int i = 0; i < dim; i++)
 		{
-			return true;
+			if (data[i] > other.data[i])
+			{
+				return true;
+			}
+			else if (data[i] < other.data[i])
+			{
+				return false;
+			}
 		}
-		else if (data[i] < other.data[i])
-		{
-			return false;
-		}
-	}
+
 	return false;
 }
 
 bool MonomialData::operator<(const MonomialData& other)
 {
-	if (dim != other.dim)
-		throw - 1;
-
-	for (int i = 0; i < dim; i++)
-	{
-		if (data[i] < other.data[i])
+	//if (dim != other.dim)
+	//	throw - 1;
+	if (this->dim < other.dim)
+		return true;
+	else if (this->dim > other.dim)
+		return false;
+	else
+		for (int i = 0; i < dim; i++)
 		{
-			return true;
+			if (data[i] < other.data[i])
+			{
+				return true;
+			}
+			else if (data[i] > other.data[i])
+			{
+				return false;
+			}
 		}
-		else if (data[i] > other.data[i])
-		{
-			return false;
-		}
-	}
 	return false;
 }
 
@@ -166,19 +176,9 @@ MonomialData* MonomialData::operator-(const MonomialData& other)
 	else
 	{
 		result = new MonomialData[2];
-		if (*this > other)
-		{
-			result[0] = *this;
-			result[1] = other;
-			result[1].M *= -1;
-		}
-		else
-		{
-
-			result[0] = other;
-			result[0].M *= -1;
-			result[1] = *this;
-		}
+		result[0] = *this;
+		result[1] = other;
+		result[1].M *= -1;
 	}
 	return result;
 }
@@ -205,7 +205,7 @@ MonomialData MonomialData::operator/(const MonomialData& other)
 	return result;
 }
 
-ostream& operator<<(ostream& ostr, const MonomialData& m)
+std::ostream& operator<<(std::ostream& ostr, const MonomialData& m)
 {
 	ostr << m.M;
 	char num = '1';

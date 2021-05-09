@@ -1,6 +1,6 @@
 #pragma once
 #include "SList.h"
-#include "MonomialData.hpp"
+#include "MonomialData.h"
 #include <initializer_list>
 
 

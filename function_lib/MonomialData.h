@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 struct MonomialData
 {
@@ -21,5 +22,5 @@ struct MonomialData
 	MonomialData operator*(const MonomialData& other);
 	MonomialData operator/(const MonomialData& other);
 
-	friend ostream& operator << (ostream& ostr, const MonomialData& m);
+	friend std::ostream& operator << (std::ostream& ostr, const MonomialData& m);
 };

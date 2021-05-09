@@ -1,4 +1,4 @@
-#include "Polynomial.hpp"
+#include "Polynomial.h"
 
 Polynomial::Polynomial() : SList<MonomialData>()
 {
@@ -12,23 +12,6 @@ Polynomial::Polynomial(const Polynomial& other) : SList<MonomialData>(other)
 Polynomial::~Polynomial()
 {
 }
-
-//Polynomial& Polynomial::operator=(const Monomial*& arr)
-//{
-//	if (this->head != nullptr)
-//		clear();
-//
-//	Size = 0;
-//	head = nullptr;
-//	Iterator k = _l.begin_const();
-//	while (k.CanMove())
-//	{
-//		push_back(*k);
-//		k++;
-//	}
-//
-//	return *this;
-//}
 
 Polynomial& Polynomial::operator+=(const Monomial& other)
 {
@@ -169,7 +152,6 @@ Polynomial Polynomial::operator-(const Polynomial& other)
 		while (i.CanMove())
 		{
 			MonomialData temp = *i;
-			temp.M *= -1;
 			result.push_back(temp);
 			i++;
 		}

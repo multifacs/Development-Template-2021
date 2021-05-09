@@ -1,4 +1,4 @@
-#include "Monomial.hpp"
+#include "Monomial.h"
 #include <iostream>
 
 Monomial::Monomial()
@@ -88,9 +88,14 @@ void Monomial::SetDim(int dim)
 		else
 			memcpy(newData, data.data, data.dim * sizeof(double));
 
-		data.dim = dim;
 		delete[] data.data;
 		data.data = newData;
+
+		if (dim > data.dim)
+			for (int i = data.dim - 1; i < dim; i++)
+				data.data[i] = 0;
+
+		data.dim = dim;
 	}
 }
 
@@ -153,17 +158,9 @@ Monomial* Monomial::operator-(const Monomial& other)
 	else
 	{
 		result = new Monomial[2];
-		if (*this > other)
-		{
-			result[0] = *this;
-			result[1] = other;
-		}
-		else
-		{
-
-			result[0] = other;
-			result[1] = *this;
-		}
+		result[0] = *this;
+		result[1] = other;
+		result[1].data.M *= -1;
 	}
 	return result;
 }
